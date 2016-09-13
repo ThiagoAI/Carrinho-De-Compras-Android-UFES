@@ -23,7 +23,7 @@ public class Login extends AppCompatActivity {
         String senha = editSenha.getText().toString();
 
         /*
-         *   VERIFICAÇÃO AQUI
+         *   VERIFICAÇÃO DE LOGIN AQUI
          */
 
         startActivity(intent);
