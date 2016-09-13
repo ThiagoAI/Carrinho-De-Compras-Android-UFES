@@ -26,7 +26,9 @@
         android:nestedScrollingEnabled="true"
         android:minWidth="256dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:hint="Seu email"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,7 +48,9 @@
         android:minWidth="256dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="85dp" />
+        android:layout_marginBottom="85dp"
+        android:hint="Sua senha"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,5 +69,16 @@
         android:id="@+id/buttonRegistrar"
         android:textSize="28dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignEnd="@+id/textView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logar"
+        android:id="@+id/buttonLogar"
+        android:textSize="28dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:onClick="logar"
+        />
 </RelativeLayout>
