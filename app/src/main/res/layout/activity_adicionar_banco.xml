@@ -16,7 +16,7 @@
         android:id="@+id/textLogin"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textSize="24dp" />
+        android:textSize="40dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -24,7 +24,8 @@
         android:id="@+id/editNome"
         android:layout_below="@+id/textLogin"
         android:layout_alignParentStart="true"
-        android:minWidth="300dp" />
+        android:minWidth="300dp"
+        android:textSize="24dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -32,17 +33,20 @@
         android:text="Adicionar"
         android:id="@+id/buttonAdicionarBanco"
         android:textSize="28dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:onClick="registrarProduto"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Preço Médio"
         android:id="@+id/textPreco"
-        android:textSize="24dp"
+        android:textSize="40dp"
         android:layout_below="@+id/editNome"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="39dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,6 +54,7 @@
         android:id="@+id/editPreco"
         android:minWidth="300dp"
         android:layout_below="@+id/textPreco"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="24dp" />
 
 </RelativeLayout>

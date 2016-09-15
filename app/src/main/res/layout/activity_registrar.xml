@@ -12,19 +12,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Email"
         android:id="@+id/textLogin"
-        android:textSize="24dp"
+        android:textSize="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editNome"
+        android:id="@+id/editEmail"
         android:minWidth="300dp"
         android:layout_below="@+id/textLogin"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="24dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -34,17 +35,18 @@
         android:id="@+id/editSenha"
         android:minWidth="300dp"
         android:layout_below="@+id/textSenha"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="24dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Senha"
         android:id="@+id/textSenha"
-        android:layout_below="@+id/editNome"
+        android:layout_below="@+id/editEmail"
         android:layout_alignParentStart="true"
         android:layout_marginTop="38dp"
-        android:textSize="24dp" />
+        android:textSize="40dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -53,6 +55,8 @@
         android:id="@+id/buttonRegistrar"
         android:textSize="28dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="registrarUsuario"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

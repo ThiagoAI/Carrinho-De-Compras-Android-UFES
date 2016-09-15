@@ -36,19 +36,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Adicionar"
+        android:text="Adicionar Produto"
         android:id="@+id/buttonAdicionarBanco"
-        android:layout_alignBaseline="@+id/button"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sair"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/buttonEstoque"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp"
+        android:layout_alignEnd="@+id/buttonEstoque"
+        android:textSize="24dp"
+        android:onClick="adicionarProduto"
+        />
 
     <TextView
         android:layout_width="wrap_content"
