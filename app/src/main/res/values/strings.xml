@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Carrinho de Compras</string>
     <string name="logar">Logar</string>
+    <string name="carrinho_titulo">Carrinho de Compras</string>
+    <string name="carrinho_total">Total:</string>
 </resources>
