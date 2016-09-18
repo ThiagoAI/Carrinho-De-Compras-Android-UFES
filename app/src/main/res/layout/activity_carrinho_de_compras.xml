@@ -40,7 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/carrinhoLinearLayout"
         android:columnCount="2"
-        android:useDefaultMargins="true">
+        android:useDefaultMargins="true"
+        android:id="@+id/carrinhoTotalGridLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,5 +58,50 @@
             android:layout_gravity="fill_horizontal|right"
             android:gravity="right" />
     </GridLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nomeProdutoCarrinhoTextInputLayout"
+        android:layout_alignParentBottom="false"
+        android:layout_above="@+id/precoProdutoCarrinhoTextInputLayout">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nomeProdutoCarrinhoEditText"
+            android:singleLine="true"
+            android:imeOptions="actionDone|actionNext"
+            android:hint="@string/hint_carrinho_produto"
+            android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/precoProdutoCarrinhoTextInputLayout"
+        android:layout_above="@+id/quantidadeProdutoCarrinhoTextInputLayout">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/precoProdutoCarrinhoEditText"
+            android:hint="@string/hint_carrinho_preco"
+            android:imeOptions="actionDone|actionPrevious|actionNext"
+            android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/quantidadeProdutoCarrinhoTextInputLayout"
+        android:layout_alignParentBottom="true" >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/quantidadeProdutoCarrinhoEditText"
+            android:hint="@string/hint_quantidade_carrinho"
+            android:imeOptions="actionDone|actionPrevious"
+            android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
 
 </RelativeLayout>
