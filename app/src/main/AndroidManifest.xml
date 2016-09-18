@@ -18,7 +18,9 @@
         <activity android:name=".TelaPrincipal" />
         <activity android:name=".AdicionarBanco" />
         <activity android:name=".Registrar" />
-        <activity android:name=".CarrinhoDeComprasActivity"></activity>
+        <activity android:name=".CarrinhoDeComprasActivity" />
+        <activity android:name=".EstoqueCasaActivity" />
+        <activity android:name=".AdicionarEstoqueActivity"></activity>
     </application>
 
 </manifest>

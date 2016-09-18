@@ -5,5 +5,6 @@
     <string name="carrinho_total">Total:</string>
     <string name="hint_carrinho_produto">Digite o nome do produto</string>
     <string name="hint_carrinho_preco">Digite o preço</string>
-    <string name="hint_quantidade_carrinho" >Digite a quantidade</string>
+    <string name="hint_quantidade_carrinho">Digite a quantidade</string>
+    <string name="texto_estoque_em_falta">Em falta</string>
 </resources>
