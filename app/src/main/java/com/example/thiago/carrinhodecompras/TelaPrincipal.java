@@ -15,13 +15,13 @@ public class TelaPrincipal extends AppCompatActivity {
 
     //Vai para a tela de registro
     public void irCarrinho(View view){
-        Intent intent = new Intent(this,Registrar.class);
+        Intent intent = new Intent(this,CarrinhoDeComprasActivity.class);
         startActivity(intent);
     }
 
     //Vai para a tela de registro
     public void irEstoque(View view){
-        Intent intent = new Intent(this,Registrar.class);
+        Intent intent = new Intent(this,AdicionarEstoqueActivity.class);
         startActivity(intent);
     }
 
