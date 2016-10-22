@@ -1,3 +1,7 @@
+package com.example.thiago.carrinhodecompras;
+
+import com.example.thiago.carrinhodecompras.ProductContract;
+
 /**
  * Created by thiago on 22/10/16.
  */

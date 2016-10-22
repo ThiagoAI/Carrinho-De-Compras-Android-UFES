@@ -1,6 +1,6 @@
-import android.app.Activity;
+package com.example.thiago.carrinhodecompras;
+
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class AdicionarBanco extends AppCompatActivity {
+public class AdicionarBanco extends Lifecycle {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

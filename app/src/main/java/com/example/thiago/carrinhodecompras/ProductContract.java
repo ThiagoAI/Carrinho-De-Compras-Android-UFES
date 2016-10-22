@@ -1,3 +1,5 @@
+package com.example.thiago.carrinhodecompras;
+
 import android.provider.BaseColumns;
 
 /**

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class TelaPrincipal extends AppCompatActivity {
+public class TelaPrincipal extends Lifecycle {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

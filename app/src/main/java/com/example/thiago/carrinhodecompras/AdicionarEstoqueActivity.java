@@ -3,7 +3,7 @@ package com.example.thiago.carrinhodecompras;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AdicionarEstoqueActivity extends AppCompatActivity {
+public class AdicionarEstoqueActivity extends Lifecycle{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
