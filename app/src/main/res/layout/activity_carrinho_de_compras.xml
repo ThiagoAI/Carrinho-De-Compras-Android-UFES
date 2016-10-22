@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nomeProdutoCarrinhoEditText"
             android:singleLine="true"
-            android:imeOptions="actionDone|actionNext"
+            android:imeOptions="actionNext"
             android:hint="@string/hint_carrinho_produto"
             android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
@@ -85,8 +85,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/precoProdutoCarrinhoEditText"
             android:hint="@string/hint_carrinho_preco"
-            android:imeOptions="actionDone|actionPrevious|actionNext"
-            android:inputType="number" />
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/quantidadeProdutoCarrinhoEditText"
             android:hint="@string/hint_quantidade_carrinho"
-            android:imeOptions="actionDone|actionPrevious"
+            android:imeOptions="actionDone"
             android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 

@@ -7,4 +7,7 @@
     <string name="hint_carrinho_preco">Digite o preço</string>
     <string name="hint_quantidade_carrinho">Digite a quantidade</string>
     <string name="texto_estoque_em_falta">Em falta</string>
+    <string name="confirm_message_carrinho">Você tem certeza que deseja excluir \\\"%s\\\" da lista de compras?</string>
+    <string name="cancel_carrinho">Cancelar</string>
+    <string name="exclui_produto_carrinho">Excluir</string>
 </resources>
