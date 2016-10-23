@@ -13,12 +13,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class CarrinhoDeComprasActivity extends AppCompatActivity
 {
+    private static final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+
     private EditText nomeProdutoCarrinhoEditText;
     private EditText precoProdutoCarrinhoEditText;
     private EditText quantidadeProdutoEditText;
@@ -37,6 +40,7 @@ public class CarrinhoDeComprasActivity extends AppCompatActivity
         precoProdutoCarrinhoEditText = ((TextInputLayout)findViewById(R.id.precoProdutoCarrinhoTextInputLayout)).getEditText();
         quantidadeProdutoEditText = ((TextInputLayout)findViewById(R.id.quantidadeProdutoCarrinhoTextInputLayout)).getEditText();
         totalAPagarTextView = (TextView) findViewById(R.id.totalAPagarTextView);
+        totalAPagarTextView.setText(currencyFormat.format(0));
 
 
         quantidadeProdutoEditText.setOnEditorActionListener(onEditorActionListener);
@@ -93,7 +97,7 @@ public class CarrinhoDeComprasActivity extends AppCompatActivity
 
         }
 
-        totalAPagarTextView.setText(String.valueOf(total));
+        totalAPagarTextView.setText(currencyFormat.format(total)); /*String.valueOf(total)*/
 
         adapter.notifyDataSetChanged();
         
