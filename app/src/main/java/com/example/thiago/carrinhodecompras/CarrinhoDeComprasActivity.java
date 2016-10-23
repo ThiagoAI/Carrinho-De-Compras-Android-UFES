@@ -16,11 +16,13 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class CarrinhoDeComprasActivity extends AppCompatActivity
 {
-    private static final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+    private static final Locale ptBR = new Locale("pt", "BR");
+    private static final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(ptBR);
 
     private EditText nomeProdutoCarrinhoEditText;
     private EditText precoProdutoCarrinhoEditText;
