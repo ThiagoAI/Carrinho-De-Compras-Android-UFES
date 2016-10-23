@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -51,7 +52,8 @@ public class CarrinhoDeComprasActivity extends AppCompatActivity
         produtosASeremExbidos = new ArrayList<>();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.carrinhoRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 0) );
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new ProdutoCarrinhoAdapter(produtosASeremExbidos, itemLongClickListener);
         recyclerView.setAdapter(adapter);
