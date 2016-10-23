@@ -48,6 +48,9 @@ public class CarrinhoDeComprasActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new ProdutoCarrinhoAdapter(produtosASeremExbidos, itemLongClickListener);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addItemDecoration(new ItemDivider(this));
 
 
 
