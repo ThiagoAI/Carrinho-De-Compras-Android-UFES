@@ -9,6 +9,7 @@ import android.view.View;
 public class EstoqueCasaActivity extends Lifecycle
 {
 
+
     private FloatingActionButton botaoAdicionar;
 
 

@@ -13,6 +13,7 @@ public class Product
     private double price;
     private int toBuy;
     private int inStock;
+    private boolean emFalta;
 
     //Constructor
     public Product(String name,double price){
@@ -21,6 +22,7 @@ public class Product
         this.id = geraId++;
         this.toBuy = 0;
         this.inStock = 0;
+        this.setEmFalta(false);
     }
 
     //Getters and setters
@@ -54,5 +56,13 @@ public class Product
 
     public int getToBuy() {
         return toBuy;
+    }
+
+    public boolean isEmFalta() {
+        return emFalta;
+    }
+
+    public void setEmFalta(boolean emFalta) {
+        this.emFalta = emFalta;
     }
 }
