@@ -9,22 +9,25 @@ import android.widget.EditText;
 public class AdicionarBanco extends Lifecycle {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_banco);
     }
 
     public void registrarProduto(View view){
-        Intent intent = new Intent(this,TelaPrincipal.class);
+       //Intent intent = new Intent(this,TelaPrincipal.class);
         EditText editNome = (EditText) findViewById(R.id.editNome);
         EditText editPreco = (EditText) findViewById(R.id.editPreco);
         String nome = editNome.getText().toString();
         String preco = editPreco.getText().toString();
 
-        /*
-         *   ADICIONA AO BANCO AQUI
-         */
+        ProductDAO dao = new ProductDAO(getApplicationContext());
+        dao.open("write");
 
-        startActivity(intent);
+        dao.putProduct(nome,preco);
+
+        dao.close();
+
+        finish();
     }
 }

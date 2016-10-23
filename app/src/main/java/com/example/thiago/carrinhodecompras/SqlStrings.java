@@ -17,7 +17,7 @@ public class SqlStrings {
             "CREATE TABLE " + ProductContract.Product.TABLE_NAME + " (" +
                     ProductContract.Product._ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                     ProductContract.Product.COLUMN_NAME + TEXT_TYPE + COMMA_SEP +
-                    ProductContract.Product.COLUMN_PRICE + TEXT_TYPE + COMMA_SEP +
+                    ProductContract.Product.COLUMN_PRICE + TEXT_TYPE +
                     " )";
 
     public static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + ProductContract.Product.TABLE_NAME;

@@ -23,9 +23,9 @@ public class User {
     }
 
     public User restoreUser(SharedPreferences prefs){
-        this.setEmail(prefs.getString("email"," "));
-        this.setName(prefs.getString("name"," "));
-        this.setPassword(prefs.getString("password"," "));
+        this.setEmail(prefs.getString("email",""));
+        this.setName(prefs.getString("name",""));
+        this.setPassword(prefs.getString("password",""));
         return this;
     }
 
