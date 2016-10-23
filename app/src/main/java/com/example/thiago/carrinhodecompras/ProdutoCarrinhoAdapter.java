@@ -1,6 +1,7 @@
 package com.example.thiago.carrinhodecompras;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,54 +14,52 @@ import java.util.List;
 
 public class ProdutoCarrinhoAdapter extends RecyclerView.Adapter<ProdutoCarrinhoAdapter.ViewHolder>
 {
-
-    private final View.OnClickListener clickListener;
     private final View.OnLongClickListener longClickListener;
+    private final List<Product> produtosASeremExibidos;
 
-
-    private final List<String> produtosASeremExibidos;
-
-    public ProdutoCarrinhoAdapter(List<String> produtos, View.OnClickListener clickListener, View.OnLongClickListener longClickListener )
+    public ProdutoCarrinhoAdapter( List<Product> produtos, View.OnLongClickListener longClickListener )
     {
         this.produtosASeremExibidos = produtos;
-        this.clickListener = clickListener;
-        this.longClickListener  = longClickListener;
+        this.longClickListener = longClickListener;
     }
-
-
-
-
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public final TextView textView;
 
-        public ViewHolder(View itemView, View.OnClickListener clickListener, View.OnLongClickListener longClickListener)
+
+        public ViewHolder(View itemView, View.OnLongClickListener longClickListener)
         {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.textView);
+            textView = (TextView)itemView.findViewById(R.id.textView);
 
-            itemView.setOnClickListener(clickListener);
             itemView.setOnLongClickListener(longClickListener);
         }
     }
 
+
     @Override
-    public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType )
+    public ProdutoCarrinhoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false );
+
+
+        return ( new ViewHolder(view, longClickListener) );
+    }
+
+    @Override
+    public void onBindViewHolder(ProdutoCarrinhoAdapter.ViewHolder holder, int position)
+    {
+        holder.textView.setText(produtosASeremExibidos.get(position).getName());
 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
-    }
-
-
-    @Override
-    public int getItemCount()
-    {
+    public int getItemCount() {
         return produtosASeremExibidos.size();
     }
+
+    //private final
+
+
 }
