@@ -19,12 +19,14 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.StringTokenizer;
 
 public class CarrinhoDeComprasActivity extends Lifecycle
 {
-    private static final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+    private static final Locale ptBr = new Locale("pt", "BR");
+    private static final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(ptBr);
 
     private EditText nomeProdutoCarrinhoEditText;
     private EditText precoProdutoCarrinhoEditText;
