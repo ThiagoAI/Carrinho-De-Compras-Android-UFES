@@ -43,9 +43,6 @@ public class AdicionarEstoqueActivity extends Lifecycle
             //Product novoProduto = new Pro
             acessorBanco.putProduct(nomeProdutoEstoqueEditText.getText().toString(), String.valueOf(2) );
             acessorBanco.close();
-            Intent intent = new Intent(this, EstoqueCasaActivity.class );
-            startActivity(intent);
-
         }
     };
 

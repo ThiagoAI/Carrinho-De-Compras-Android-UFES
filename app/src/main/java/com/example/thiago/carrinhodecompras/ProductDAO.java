@@ -44,7 +44,7 @@ public class ProductDAO {
     }
 
     public Cursor getProducts(){
-        String[] projection = {
+        /*String[] projection = {
                 ProductContract.Product._ID,
                 ProductContract.Product.COLUMN_NAME,
                 ProductContract.Product.COLUMN_PRICE
@@ -61,7 +61,9 @@ public class ProductDAO {
                 null,
                 null,
                 sortOrder
-        );
+        );*/
+
+        Cursor c = db.rawQuery("SELECT * from product",null);
 
         return c;
         }

@@ -31,7 +31,7 @@ public class TelaPrincipal extends Lifecycle {
 
     //Vai para a tela de registro
     public void irEstoque(View view){
-        Intent intent = new Intent(this,AdicionarEstoqueActivity.class);
+        Intent intent = new Intent(this,EstoqueCasaActivity.class);
         startActivity(intent);
     }
 

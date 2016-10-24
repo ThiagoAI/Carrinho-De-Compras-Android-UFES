@@ -17,8 +17,6 @@ import java.util.List;
 
 public class EstoqueCasaActivity extends Lifecycle
 {
-
-
     private FloatingActionButton botaoAdicionar;
     private List<Product> produtosEmEstoque;
     private EstoqueAdapter adapter;
@@ -32,6 +30,7 @@ public class EstoqueCasaActivity extends Lifecycle
         setContentView(R.layout.activity_estoque_casa);
         acessorBanco = new ProductDAO(getApplicationContext());
 
+        acessorBanco.open("reading");
         Cursor c = acessorBanco.getProducts();
 
         produtosEmEstoque = new ArrayList<>();
@@ -40,6 +39,7 @@ public class EstoqueCasaActivity extends Lifecycle
             Product novoProduto = new Product(c.getString(c.getColumnIndex("name")), c.getDouble(c.getColumnIndex("price")));
             produtosEmEstoque.add(novoProduto);
         }
+        acessorBanco.close();
 
         //Collections.sort();
 
