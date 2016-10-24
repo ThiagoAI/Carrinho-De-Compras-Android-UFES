@@ -1,5 +1,6 @@
 package com.example.thiago.carrinhodecompras;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -42,6 +43,8 @@ public class AdicionarEstoqueActivity extends Lifecycle
             //Product novoProduto = new Pro
             acessorBanco.putProduct(nomeProdutoEstoqueEditText.getText().toString(), String.valueOf(2) );
             acessorBanco.close();
+            Intent intent = new Intent(this, EstoqueCasaActivity.class );
+            startActivity(intent);
 
         }
     };
