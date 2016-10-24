@@ -31,13 +31,17 @@ public class AdicionarEstoqueActivity extends Lifecycle
         nomeProdutoEstoqueEditText.addTextChangedListener(textWatcher);
         quantidadeProdutoEstoqueEditText.addTextChangedListener(textWatcher2);
         salvarBotao.setOnClickListener(onClickListener);
+        verificaBotao();
     }
 
     private final View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             ProductDAO acessorBanco = new ProductDAO(getApplicationContext());
+            acessorBanco.open("write");
+            //Product novoProduto = new Pro
             acessorBanco.putProduct(nomeProdutoEstoqueEditText.getText().toString(), String.valueOf(2) );
+            acessorBanco.close();
 
         }
     };
