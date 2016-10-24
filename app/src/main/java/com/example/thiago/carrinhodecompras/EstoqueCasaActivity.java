@@ -1,5 +1,6 @@
 package com.example.thiago.carrinhodecompras;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ public class EstoqueCasaActivity extends Lifecycle
     private List<Product> produtosEmEstoque;
     private EstoqueAdapter adapter;
     private ProductDAO acessorBanco;
+    private Context context;
 
 
     @Override
@@ -29,6 +31,7 @@ public class EstoqueCasaActivity extends Lifecycle
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estoque_casa);
         acessorBanco = new ProductDAO(getApplicationContext());
+        context = this;
 
         acessorBanco.open("reading");
         Cursor c = acessorBanco.getProducts();
@@ -60,8 +63,8 @@ public class EstoqueCasaActivity extends Lifecycle
         @Override
         public void onClick(View view)
         {
-            //Intent intent = new Intent(this, AdicionarEstoqueActivity.class ); //Intent(this,AdicionarEstoqueActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(context, AdicionarEstoqueActivity.class ); //Intent(this,AdicionarEstoqueActivity.class);
+            startActivity(intent);
         }
     };
 }
