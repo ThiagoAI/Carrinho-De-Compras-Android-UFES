@@ -66,10 +66,28 @@ public class CarrinhoDeComprasActivity extends Lifecycle
     protected void onResume(){
         super.onResume();
         if (produtosASeremExbidos != null){
-           Set<String> nomes = new HashSet<String>();
+            int size = userPrefs.getInt("array_size",0);
+
+            for(int i = 0;i < size; i++){
+                float tp = userPrefs.getFloat("p_" + i,0);
+                String tn = userPrefs.getString("n_" + i,"");
+                int tq = userPrefs.getInt("q_" + i,0);
+                Product newp = new Product(tn,tp);
+                newp.setToBuy(tq);
+                produtosASeremExbidos.add(newp);
+            }
+
+            float total = 0;
+            for(Product p : produtosASeremExbidos) total += p.getPrice() * p.getToBuy();
+
+
+
+           /*Set<String> nomes = new HashSet<String>();
             Set<String> precos = new HashSet<String>();
+            Set<String> quantidades = new HashSet<String>();
             nomes = userPrefs.getStringSet("nomes",null);
             precos = userPrefs.getStringSet("precos",null);
+            quantidades = userPrefs.getStringSet("quantidades",null);
             float total = userPrefs.getFloat("total",0);
 
             if(nomes != null && precos != null) {
@@ -78,9 +96,10 @@ public class CarrinhoDeComprasActivity extends Lifecycle
 
                 while (iter.hasNext() && iter2.hasNext()) {
                     Product newp = new Product(iter.next(), Double.parseDouble(iter2.next()));
+
                     produtosASeremExbidos.add(newp);
                 }
-            }
+            }*/
 
                 totalAPagarTextView.setText(currencyFormat.format(total));
         }
@@ -89,7 +108,7 @@ public class CarrinhoDeComprasActivity extends Lifecycle
     // Função responsável por adicionar produtos
     private void processaEntrada()
     {
-        float total = userPrefs.getFloat("total",0);
+        float total = 0;
         boolean primeraVez = true;
         //((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(onCreateView().getWindowToken());
         String nomeProduto = nomeProdutoCarrinhoEditText.getText().toString();
@@ -111,14 +130,28 @@ public class CarrinhoDeComprasActivity extends Lifecycle
         {
             Product novoProduto = new Product(nomeProduto, preco);
             novoProduto.setToBuy(quantidade);
-            total += novoProduto.getPrice() * novoProduto.getToBuy();
             produtosASeremExbidos.add(novoProduto);
         }
 
         //Mexi aqui Pedro
         SharedPreferences.Editor ed = userPrefs.edit();
 
-        ed.putFloat("total",total);
+        int size = produtosASeremExbidos.size();
+        ed.remove("array_size");
+        ed.putInt("array_size",size);
+        for(int i = 0;i < size; i++){
+            ed.remove("p_" + i);
+            ed.remove("n_" + i);
+            ed.remove("q_" + i);
+            ed.putString("n_" + i,produtosASeremExbidos.get(i).getName());
+            ed.putInt("q_" + i,produtosASeremExbidos.get(i).getToBuy());
+            ed.putFloat("p_" + i,(float)produtosASeremExbidos.get(i).getPrice());
+        }
+        ed.commit();
+
+        for(Product p : produtosASeremExbidos) total += p.getPrice() * p.getToBuy();
+
+        /*ed.putFloat("total",total);
 
         Set<String> nomes = new HashSet<String>();
         Set<String> precos = new HashSet<String>();
@@ -130,9 +163,10 @@ public class CarrinhoDeComprasActivity extends Lifecycle
             nomes.add(temp.getName());
             precos.add(String.valueOf(temp.getPrice()));
         }
+        ed.putString("produtos_carrinho",ObjectSerializer.serialize(produtosASeremExbidos));
         ed.putStringSet("nomes",nomes);
         ed.putStringSet("precos",precos);
-        ed.commit();
+        ed.commit();*/
         //Fim do que eu mexi
 
         totalAPagarTextView.setText(currencyFormat.format(total)); /*String.valueOf(total)*/
