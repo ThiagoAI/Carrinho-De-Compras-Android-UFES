@@ -1,6 +1,7 @@
 package com.example.thiago.carrinhodecompras;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -13,12 +14,15 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.HashSet;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 
-public class CarrinhoDeComprasActivity extends AppCompatActivity
+public class CarrinhoDeComprasActivity extends Lifecycle
 {
     private static final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
@@ -56,16 +60,36 @@ public class CarrinhoDeComprasActivity extends AppCompatActivity
 
         recyclerView.addItemDecoration(new ItemDivider(this));
 
+    }
 
+    //Pedro fiz essa aqui
+    protected void onResume(){
+        super.onResume();
+        if (produtosASeremExbidos != null){
+           Set<String> nomes = new HashSet<String>();
+            Set<String> precos = new HashSet<String>();
+            nomes = userPrefs.getStringSet("nomes",null);
+            precos = userPrefs.getStringSet("precos",null);
+            float total = userPrefs.getFloat("total",0);
 
+            if(nomes != null && precos != null) {
+                Iterator<String> iter = nomes.iterator();
+                Iterator<String> iter2 = precos.iterator();
 
+                while (iter.hasNext() && iter2.hasNext()) {
+                    Product newp = new Product(iter.next(), Double.parseDouble(iter2.next()));
+                    produtosASeremExbidos.add(newp);
+                }
+            }
 
+                totalAPagarTextView.setText(currencyFormat.format(total));
+        }
     }
 
     // Função responsável por adicionar produtos
     private void processaEntrada()
     {
-        double total = 0;
+        float total = userPrefs.getFloat("total",0);
         boolean primeraVez = true;
         //((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(onCreateView().getWindowToken());
         String nomeProduto = nomeProdutoCarrinhoEditText.getText().toString();
@@ -87,15 +111,29 @@ public class CarrinhoDeComprasActivity extends AppCompatActivity
         {
             Product novoProduto = new Product(nomeProduto, preco);
             novoProduto.setToBuy(quantidade);
+            total += novoProduto.getPrice() * novoProduto.getToBuy();
             produtosASeremExbidos.add(novoProduto);
         }
 
-        // Processa o valor total a ser mostrado no Total
-        for ( Product p: produtosASeremExbidos )
-        {
-            total += p.getPrice() * p.getToBuy();
+        //Mexi aqui Pedro
+        SharedPreferences.Editor ed = userPrefs.edit();
 
+        ed.putFloat("total",total);
+
+        Set<String> nomes = new HashSet<String>();
+        Set<String> precos = new HashSet<String>();
+
+        Iterator<Product> iter = produtosASeremExbidos.iterator();
+
+        while (iter.hasNext()) {
+            Product temp = iter.next();
+            nomes.add(temp.getName());
+            precos.add(String.valueOf(temp.getPrice()));
         }
+        ed.putStringSet("nomes",nomes);
+        ed.putStringSet("precos",precos);
+        ed.commit();
+        //Fim do que eu mexi
 
         totalAPagarTextView.setText(currencyFormat.format(total)); /*String.valueOf(total)*/
 
