@@ -16,10 +16,13 @@
         android:id="@+id/textLogin"
         android:textSize="40dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorPrimary" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:background="@drawable/typing_box"
+        android:padding="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editEmail"
         android:minWidth="300dp"
@@ -28,7 +31,9 @@
         android:textSize="24dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:background="@drawable/typing_box"
+        android:padding="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
@@ -46,7 +51,8 @@
         android:layout_below="@+id/editEmail"
         android:layout_alignParentStart="true"
         android:layout_marginTop="38dp"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:textColor="@color/colorPrimary" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +60,8 @@
         android:text="Registrar"
         android:id="@+id/buttonRegistrar"
         android:textSize="28dp"
+        android:textColor="@android:color/background_light"
+        android:background="@drawable/button_border"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:onClick="registrarUsuario"
@@ -67,10 +75,13 @@
         android:layout_marginTop="41dp"
         android:textSize="40dp"
         android:layout_below="@+id/editSenha"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorPrimary" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:background="@drawable/typing_box"
+        android:padding="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"

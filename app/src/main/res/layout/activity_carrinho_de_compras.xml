@@ -66,6 +66,8 @@
         android:layout_alignParentBottom="false"
         android:layout_above="@+id/precoProdutoCarrinhoTextInputLayout">
         <EditText
+            android:background="@drawable/typing_box"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/nomeProdutoCarrinhoEditText"
@@ -81,6 +83,8 @@
         android:id="@+id/precoProdutoCarrinhoTextInputLayout"
         android:layout_above="@+id/quantidadeProdutoCarrinhoTextInputLayout">
         <EditText
+            android:background="@drawable/typing_box"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/precoProdutoCarrinhoEditText"
@@ -96,6 +100,8 @@
         android:id="@+id/quantidadeProdutoCarrinhoTextInputLayout"
         android:layout_alignParentBottom="true" >
         <EditText
+            android:background="@drawable/typing_box"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/quantidadeProdutoCarrinhoEditText"

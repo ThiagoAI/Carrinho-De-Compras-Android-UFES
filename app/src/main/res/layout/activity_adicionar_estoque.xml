@@ -25,6 +25,8 @@
                 android:id="@+id/nomeProdutoEstoqueTextInputLayout"
                 android:layout_marginBottom="@dimen/activity_vertical_margin">
                 <EditText
+                    android:background="@drawable/typing_box"
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/nomeProdutoEstoqueEditText"
@@ -38,6 +40,8 @@
                 android:id="@+id/quantidadeProdutoEstoqueTextInputLayout"
                 android:layout_marginBottom="@dimen/activity_vertical_margin">
                 <EditText
+                    android:background="@drawable/typing_box"
+                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/quantidadeProdutoEstoqueEditText"

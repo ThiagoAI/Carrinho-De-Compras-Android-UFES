@@ -44,7 +44,7 @@ public class EstoqueCasaActivity extends Lifecycle
         }
         acessorBanco.close();
 
-        //Collections.sort();
+        //Collections.sort(produtosEmEstoque);
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.estoqueRecyclerView);

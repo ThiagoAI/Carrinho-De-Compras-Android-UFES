@@ -11,25 +11,16 @@
     tools:context="com.example.thiago.carrinhodecompras.Login">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logar"
-        android:id="@+id/buttonLogar"
-        android:textSize="28dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:onClick="logar"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrar"
         android:id="@+id/buttonRegistrar"
-        android:textSize="28dp"
         android:onClick="irRegistrar"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/button_border"
+        android:textSize="28dp"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +30,9 @@
         android:textSize="40dp"
         android:textIsSelectable="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColor="@color/colorPrimary" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -49,8 +42,15 @@
         android:minWidth="256dp"
         android:hint="Seu email"
         android:textSize="24dp"
+        android:padding="10dp"
         android:layout_below="@+id/textLogin"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:inputType="textNoSuggestions"
+        android:selectAllOnFocus="false"
+        android:layout_alignParentEnd="true"
+        android:elegantTextHeight="false"
+        android:imeOptions="actionNext"
+        android:background="@drawable/typing_box"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,7 +61,8 @@
         android:textIsSelectable="true"
         android:layout_below="@+id/editLogin"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="27dp" />
+        android:layout_marginTop="27dp"
+        android:textColor="@color/colorPrimary" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -71,12 +72,13 @@
         android:minWidth="256dp"
         android:hint="Sua senha"
         android:textSize="24dp"
-        style="@android:style/Widget.DeviceDefault.Light.AutoCompleteTextView"
-        android:singleLine="false"
+        android:padding="10dp"
         android:selectAllOnFocus="false"
         android:inputType="textPassword"
         android:layout_below="@+id/textSenha"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/typing_box"/>
 
     <CheckBox
         android:text="Lembrar"
@@ -88,5 +90,18 @@
         android:layout_marginTop="87dp"
         android:layout_below="@+id/textSenha"
         android:layout_alignEnd="@+id/textLogin" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logar"
+        android:id="@+id/buttonLogar"
+        android:onClick="logar"
+        android:background="@drawable/button_border"
+        android:textSize="28dp"
+        android:layout_marginBottom="40dp"
+        android:layout_above="@+id/buttonRegistrar"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
 
 </RelativeLayout>

@@ -9,63 +9,72 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.thiago.carrinhodecompras.TelaPrincipal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver Carrinho"
-        android:id="@+id/buttonCarrinho"
-        android:clickable="false"
-        android:minWidth="300dp"
-        android:minHeight="50dp"
-        android:layout_below="@+id/textOla"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="83dp"
-        android:textSize="24dp"
-        android:onClick="irCarrinho"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver Estoque"
-        android:id="@+id/buttonEstoque"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:minWidth="300dp"
-        android:minHeight="50dp"
-        android:textSize="24dp"
-        android:onClick="irEstoque"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Adicionar Produto"
-        android:id="@+id/buttonAdicionarBanco"
-        android:layout_below="@+id/buttonEstoque"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="43dp"
-        android:layout_alignEnd="@+id/buttonEstoque"
-        android:textSize="24dp"
-        android:onClick="adicionarProduto"
-        />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bem vindo "
         android:id="@+id/textOla"
+        android:textSize="32dp"
+        android:textColorLink="?android:attr/colorPrimary"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:textSize="32dp" />
+        android:textColor="@color/colorPrimary" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Carrinho"
+        android:id="@+id/buttonCarrinho"
+        android:minWidth="300dp"
+        android:minHeight="50dp"
+        android:textSize="32dp"
+        android:onClick="irCarrinho"
+        android:clickable="false"
+        android:textAllCaps="false"
+        android:background="@drawable/button_border"
+        android:textColor="@android:color/background_light"
+        android:layout_marginTop="74dp"
+        android:layout_below="@+id/textOla"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Estoque"
+        android:id="@+id/buttonEstoque"
+        android:minWidth="300dp"
+        android:minHeight="50dp"
+        android:textSize="32dp"
+        android:onClick="irEstoque"
+        android:background="@drawable/button_border"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/buttonCarrinho"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Produto"
+        android:id="@+id/buttonAdicionarBanco"
+        android:textSize="32dp"
+        android:onClick="adicionarProduto"
+        android:background="@drawable/button_border"
+        android:textColor="@android:color/background_light"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="29dp"
+        android:textAllCaps="false" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonCarrinho"
-        android:layout_toEndOf="@+id/textOla"
         android:id="@+id/textNome"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textOla"
+        android:textColor="@color/colorPrimary" />
 
 </RelativeLayout>
