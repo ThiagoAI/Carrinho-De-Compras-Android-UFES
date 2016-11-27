@@ -155,7 +155,7 @@ public class Login extends Lifecycle {
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService", Toast.LENGTH_LONG ).show();
+                    Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService. Bad Conection", Toast.LENGTH_LONG ).show();
                 }
             }
             catch ( Exception e )
