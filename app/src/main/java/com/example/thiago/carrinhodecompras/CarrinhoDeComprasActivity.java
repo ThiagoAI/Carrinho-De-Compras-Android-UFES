@@ -1,6 +1,7 @@
 package com.example.thiago.carrinhodecompras;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashSet;
 import java.text.NumberFormat;
@@ -67,13 +69,15 @@ public class CarrinhoDeComprasActivity extends Lifecycle
     //Pedro fiz essa aqui
     protected void onResume(){
         super.onResume();
+        //Toast.makeText(getApplicationContext(),"oi", Toast.LENGTH_LONG).show();
         if (produtosASeremExbidos != null){
-            int size = userPrefs.getInt("array_size",0);
+            String user = userPrefs.getString("email","");
+            int size = userPrefs.getInt(user + "array_size",0);
 
             for(int i = 0;i < size; i++){
-                float tp = userPrefs.getFloat("p_" + i,0);
-                String tn = userPrefs.getString("n_" + i,"");
-                int tq = userPrefs.getInt("q_" + i,0);
+                float tp = userPrefs.getFloat(user + "p_" + i,0);
+                String tn = userPrefs.getString(user + "n_" + i,"");
+                int tq = userPrefs.getInt(user + "q_" + i,0);
                 Product newp = new Product(tn,tp);
                 newp.setToBuy(tq);
                 produtosASeremExbidos.add(newp);
@@ -139,15 +143,16 @@ public class CarrinhoDeComprasActivity extends Lifecycle
         SharedPreferences.Editor ed = userPrefs.edit();
 
         int size = produtosASeremExbidos.size();
-        ed.remove("array_size");
-        ed.putInt("array_size",size);
+        String user = userPrefs.getString("email","");
+        ed.remove(user + "array_size");
+        ed.putInt(user + "array_size",size);
         for(int i = 0;i < size; i++){
-            ed.remove("p_" + i);
-            ed.remove("n_" + i);
-            ed.remove("q_" + i);
-            ed.putString("n_" + i,produtosASeremExbidos.get(i).getName());
-            ed.putInt("q_" + i,produtosASeremExbidos.get(i).getToBuy());
-            ed.putFloat("p_" + i,(float)produtosASeremExbidos.get(i).getPrice());
+            ed.remove(user + "p_" + i);
+            ed.remove(user + "n_" + i);
+            ed.remove(user + "q_" + i);
+            ed.putString(user + "n_" + i,produtosASeremExbidos.get(i).getName());
+            ed.putInt(user + "q_" + i,produtosASeremExbidos.get(i).getToBuy());
+            ed.putFloat(user + "p_" + i,(float)produtosASeremExbidos.get(i).getPrice());
         }
         ed.commit();
 
@@ -190,7 +195,6 @@ public class CarrinhoDeComprasActivity extends Lifecycle
             processaEntrada();
 
     }
-
 
     private final TextView.OnEditorActionListener onEditorActionListener = new TextView.OnEditorActionListener()
     {

@@ -1,11 +1,14 @@
 package com.example.thiago.carrinhodecompras;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -19,8 +22,31 @@ public class TelaPrincipal extends Lifecycle {
 
     protected void onResume(){
         super.onResume();
-        TextView tv = (TextView) findViewById(R.id.textNome);
-        tv.setText(userPrefs.getString("name","")+".");
+    }
+
+    public void limparCarrinho(View view){
+        new AlertDialog.Builder(this)
+                .setTitle("LIMPAR CARRINHO")
+                .setMessage("Você tem certeza que quer limpar seu carrinho?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor ed = userPrefs.edit();
+                        String user = userPrefs.getString("email","");
+                        int size = userPrefs.getInt(user + "array_size",0);
+                        ed.remove(user + "array_size");
+                        for(int i = 0;i < size; i++){
+                            ed.remove(user + "p_" + i);
+                            ed.remove(user + "n_" + i);
+                            ed.remove(user + "q_" + i);
+                        }
+                        ed.commit();
+                        Toast.makeText(getApplicationContext(),"Carrinho limpo.", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
+
     }
 
     //Vai para a tela de registro

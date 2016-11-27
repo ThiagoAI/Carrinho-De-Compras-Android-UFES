@@ -7,23 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/white_bg"
     tools:context="com.example.thiago.carrinhodecompras.TelaPrincipal">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bem vindo "
-        android:id="@+id/textOla"
-        android:textSize="32dp"
-        android:textColorLink="?android:attr/colorPrimary"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textColor="@color/colorPrimary" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Ver Carrinho"
+        android:height="100dp"
+        android:drawableLeft="@drawable/ic_action_name"
         android:id="@+id/buttonCarrinho"
         android:minWidth="300dp"
         android:minHeight="50dp"
@@ -33,14 +25,32 @@
         android:textAllCaps="false"
         android:background="@drawable/button_border"
         android:textColor="@android:color/background_light"
-        android:layout_marginTop="74dp"
-        android:layout_below="@+id/textOla"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adicionar Produto"
+        android:height="100dp"
+        android:drawableLeft="@drawable/ic_save_black_24dp"
+        android:id="@+id/buttonAdicionarBanco"
+        android:onClick="adicionarProduto"
+        android:background="@drawable/button_border"
+        android:textColor="@android:color/background_light"
+        android:textAllCaps="false"
+        android:textSize="32sp"
+        android:layout_below="@+id/buttonEstoque"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="14dp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ver Estoque"
+        android:height="100dp"
+        android:drawableLeft="@drawable/ic_eye"
         android:id="@+id/buttonEstoque"
         android:minWidth="300dp"
         android:minHeight="50dp"
@@ -48,33 +58,26 @@
         android:onClick="irEstoque"
         android:background="@drawable/button_border"
         android:textColor="@android:color/background_light"
-        android:layout_below="@+id/buttonCarrinho"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="36dp"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        android:layout_marginTop="114dp"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentStart="true" />
 
     <Button
+        android:src="@drawable/ic_action_carrinho"
+        android:text="Limpar Carrinho"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adicionar Produto"
-        android:id="@+id/buttonAdicionarBanco"
+        android:id="@+id/button"
         android:textSize="32dp"
-        android:onClick="adicionarProduto"
+        android:onClick="limparCarrinho"
+        android:height="100dp"
         android:background="@drawable/button_border"
         android:textColor="@android:color/background_light"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="29dp"
-        android:textAllCaps="false" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textNome"
-        android:textSize="32dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textOla"
-        android:textColor="@color/colorPrimary" />
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/ic_clear_3"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/buttonCarrinho"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
