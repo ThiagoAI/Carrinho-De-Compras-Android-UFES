@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Carrinho-De-Compras-Android-UFES.iml" filepath="$PROJECT_DIR$/Carrinho-De-Compras-Android-UFES.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CarrinhodeCompras.iml" filepath="$PROJECT_DIR$/CarrinhodeCompras.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
