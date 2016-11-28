@@ -102,8 +102,7 @@ public class Registrar extends Lifecycle{
                 {
                     StringBuilder builder = new StringBuilder();
 
-                    try ( BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(connection.getInputStream())))
+                    try ( BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream())))
                     {
                         String linha;
 
@@ -115,7 +114,7 @@ public class Registrar extends Lifecycle{
                         System.out.println("Erro de leitura no web service!");
                         e.printStackTrace();
                     }
-                    JSONObject jsonObject = new JSONObject();
+                    JSONObject jsonObject = new JSONObject( builder.toString() );
                     //jsonObject.
 
                     return new JSONObject(builder.toString());
