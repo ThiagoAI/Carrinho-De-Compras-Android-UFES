@@ -2,19 +2,19 @@ package com.example.thiago.carrinhodecompras;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -59,13 +59,13 @@ public class Login extends Lifecycle {
     //Função que verifica login e se correto entra na tela principal
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void logar(View view){
-        AcessoWebService acessoWebService = new AcessoWebService();
         Intent intent = new Intent(this,TelaPrincipal.class);
         EditText editLogin = (EditText) findViewById(R.id.editLogin);
         EditText editSenha = (EditText) findViewById(R.id.editSenha);
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
-        String resposta = acessoWebService.logar( login, senha );
+        AcessoWebService acessoWebService = new AcessoWebService( login, senha );
+        //String resposta = acessoWebService.logarPrototipo( login, senha );
 
         if(!user.exits()){
             Toast.makeText(getApplicationContext(),"Não há usuário registrado.", Toast.LENGTH_LONG).show();
@@ -82,7 +82,9 @@ public class Login extends Lifecycle {
         /*if(user.authenticate(login,senha)){
             startActivity(intent);
         }*/
-        if ( resposta.equals("sucesso") )
+        /*if ( resposta.equals("sucesso") )
+            startActivity(intent);*/
+        if ( acessoWebService.isSucesso() )
             startActivity(intent);
         else{
             Toast.makeText(getApplicationContext(),"Login ou senha inválido.",Toast.LENGTH_LONG).show();
@@ -95,17 +97,45 @@ public class Login extends Lifecycle {
         startActivity(intent);
     }
 
-    private class AcessoWebService
+    private class AcessoWebService extends AsyncTask< URL, Void, JSONObject >
     {
         private String baseUrl = "http://localhost:9000/";
         private String usuarioUrl = baseUrl + "usuario/";
-        /*public AcessoWebService()
+        private String loginUsuario;
+        private String senhaUsuario;
+        private boolean sucesso;
+
+        public AcessoWebService( String login, String senha )
         {
-            URL url = cr
+            loginUsuario = login;
+            senhaUsuario = senha;
+            setSucesso(false);
+        }
+
+
+
+
+        /*@RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        public String logar(String login, String senha )
+        {
+            String urlBase = usuarioUrl + login;
+            URL url = null;
+            try
+            {
+                url = new URL(urlBase);
+            }
+            catch ( Exception e )
+            {
+                Toast.makeText(getApplicationContext(), "Erro de conversão de URL%nURL: " + urlBase, Toast.LENGTH_LONG ).show();
+            }
+
+            JSONObject jsonObject = this.execute(url);
+
+
         }*/
 
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-        public String logar(String login, String senha )
+        public String logarPrototipo(String login, String senha )
         {
             HttpURLConnection connection = null;
             String urlBase = usuarioUrl + login;
@@ -171,5 +201,96 @@ public class Login extends Lifecycle {
 
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        @Override
+        protected JSONObject doInBackground(URL... params)
+        {
+            HttpURLConnection connection = null;
+
+            try
+            {
+                connection = (HttpURLConnection) params[ 0 ].openConnection();
+                int resposta = connection.getResponseCode();
+
+                if ( resposta == HttpURLConnection.HTTP_OK )
+                {
+                    StringBuilder builder = new StringBuilder();
+
+                    try ( BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(connection.getInputStream())))
+                    {
+                        String linha;
+
+                        while ((linha = reader.readLine()) != null )
+                            builder.append(linha);
+
+                    }
+                    catch ( IOException e )
+                    {
+                        Toast.makeText(getApplicationContext(),"Erro de leitura dos dados do WebService", Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+                    return new JSONObject(builder.toString() );
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService. Bad Conection", Toast.LENGTH_LONG ).show();
+                }
+            }
+            catch ( Exception e )
+            {
+                Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService", Toast.LENGTH_LONG ).show();
+                e.printStackTrace();
+            }
+            finally
+            {
+                connection.disconnect();
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject usuario )
+        {
+            try
+            {
+                if ( usuario.getString( "nome" ).equals( loginUsuario ) )
+                {
+                    if ( usuario.getString("senha").equals(senhaUsuario) )
+                        setSucesso(true);
+                    else
+                        setSucesso(false);
+                }
+                else
+                    setSucesso(false);
+            }
+            catch ( JSONException e )
+            {
+                Toast.makeText(getApplicationContext(), "Erro de processamento do JSON", Toast.LENGTH_LONG ).show();
+                e.printStackTrace();
+
+            }
+            /*JSONObject jsonObject = new JSONObject(builder.toString());
+            if ( jsonObject.getString("nome").equals(login) )
+            {
+                if ( jsonObject.getString("senha").equals(senha) )
+                    return "sucesso";
+                else
+                    return "fail";
+            }
+            else
+                return "fail";*/
+
+        }
+
+
+        public boolean isSucesso() {
+            return sucesso;
+        }
+
+        public void setSucesso(boolean sucesso) {
+            this.sucesso = sucesso;
+        }
     }
 }
