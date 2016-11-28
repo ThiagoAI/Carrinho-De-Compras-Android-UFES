@@ -72,7 +72,7 @@ public class CarrinhoDeComprasActivity extends Lifecycle
         adapter.setUserPrefs(userPrefs);
         //Toast.makeText(getApplicationContext(),"oi", Toast.LENGTH_LONG).show();
         if (produtosASeremExbidos != null){
-            String user = userPrefs.getString("email","");
+            String user = userPrefs.getString("name","");
             int size = userPrefs.getInt(user + "array_size",0);
 
             for(int i = 0;i < size; i++){
@@ -149,7 +149,7 @@ public class CarrinhoDeComprasActivity extends Lifecycle
         SharedPreferences.Editor ed = userPrefs.edit();
 
         int size = produtosASeremExbidos.size();
-        String user = userPrefs.getString("email","");
+        String user = userPrefs.getString("name","");
         ed.remove(user + "array_size");
         ed.putInt(user + "array_size",size);
         for(int i = 0;i < size; i++){

@@ -44,7 +44,7 @@ public class Registrar extends Lifecycle{
          *   ADICIONA AQUI
          */
 
-        String urlCadastrar = "http://localhost:9000/cadastrar/" + nome + "/" + senha;
+        String urlCadastrar = "http://10.0.2.2:9000/cadastrar/" + nome + "/" + senha;
         URL url = null;
         try
         {
@@ -57,10 +57,10 @@ public class Registrar extends Lifecycle{
         WebServiceAdicionaLogin webServiceAdicionaLogin = new WebServiceAdicionaLogin( nome, senha );
         webServiceAdicionaLogin.execute( url );
 
-        if ( webServiceAdicionaLogin.isSucesso() )
+       /* if ( webServiceAdicionaLogin.isSucesso() )
             Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso", Toast.LENGTH_LONG ).show();
         else
-            Toast.makeText(getApplicationContext(), "Usúario já existe", Toast.LENGTH_LONG ).show();
+            Toast.makeText(getApplicationContext(), "Usúario já existe", Toast.LENGTH_LONG ).show();*/
 
 
 
@@ -143,7 +143,9 @@ public class Registrar extends Lifecycle{
             {
                 try
                 {
+                    Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso", Toast.LENGTH_LONG ).show();
                     this.setSucesso(usuario.getString("nome").equals("sucesso"));
+                    return;
                 }
                 catch ( JSONException e )
                 {
@@ -154,6 +156,7 @@ public class Registrar extends Lifecycle{
             }
             else
                 System.err.println("JSON OBject é nulo");
+            Toast.makeText(getApplicationContext(), "Erro ao registrar usuario", Toast.LENGTH_LONG ).show();
 
         }
 

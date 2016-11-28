@@ -33,7 +33,7 @@ public class TelaPrincipal extends Lifecycle {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences.Editor ed = userPrefs.edit();
-                        String user = userPrefs.getString("email","");
+                        String user = userPrefs.getString("name","");
                         int size = userPrefs.getInt(user + "array_size",0);
                         ed.remove(user + "array_size");
                         for(int i = 0;i < size; i++){

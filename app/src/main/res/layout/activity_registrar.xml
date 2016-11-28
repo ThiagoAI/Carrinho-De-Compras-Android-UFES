@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email (Login)"
+        android:text="Email "
         android:id="@+id/textLogin"
         android:textSize="40dp"
         android:layout_alignParentTop="true"
@@ -74,7 +74,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome"
+        android:text="Nome (Login)"
         android:id="@+id/textNome"
         android:layout_marginTop="41dp"
         android:textSize="40dp"

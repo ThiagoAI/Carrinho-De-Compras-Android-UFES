@@ -280,20 +280,22 @@ public class Login extends Lifecycle {
 
             try
             {
-                System.out.println( usuario.getString( "nome" ) + " ! " +  usuario.getString( "senha" ));
-                System.out.println(loginUsuario + " | " + senhaUsuario);
                 if ( usuario.getString( "nome" ).equals( loginUsuario ) )
                 {
                     System.out.println("eeee");
                     if ( usuario.getString("senha").equals(senhaUsuario) ) {
-                        System.out.println("eeeeii");
+                        Toast.makeText(getApplicationContext(), "Login efetuado com sucesso", Toast.LENGTH_LONG ).show();
                         setSucesso(true);
                     }
-                    else
+                    else {
+                        Toast.makeText(getApplicationContext(), "Login ou senha incorreto(s)", Toast.LENGTH_LONG ).show();
                         setSucesso(false);
+                    }
                 }
-                else
+                else {
+                    Toast.makeText(getApplicationContext(), "Login ou senha incorreto(s)", Toast.LENGTH_LONG ).show();
                     setSucesso(false);
+                }
             }
             catch ( JSONException e )
             {
