@@ -59,7 +59,7 @@ public class CarrinhoDeComprasActivity extends Lifecycle
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.carrinhoRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new ProdutoCarrinhoAdapter(produtosASeremExbidos, itemLongClickListener);
+        adapter = new ProdutoCarrinhoAdapter(produtosASeremExbidos,userPrefs);
         recyclerView.setAdapter(adapter);
 
         recyclerView.addItemDecoration(new ItemDivider(this));
@@ -69,6 +69,7 @@ public class CarrinhoDeComprasActivity extends Lifecycle
     //Pedro fiz essa aqui
     protected void onResume(){
         super.onResume();
+        adapter.setUserPrefs(userPrefs);
         //Toast.makeText(getApplicationContext(),"oi", Toast.LENGTH_LONG).show();
         if (produtosASeremExbidos != null){
             String user = userPrefs.getString("email","");
@@ -78,9 +79,14 @@ public class CarrinhoDeComprasActivity extends Lifecycle
                 float tp = userPrefs.getFloat(user + "p_" + i,0);
                 String tn = userPrefs.getString(user + "n_" + i,"");
                 int tq = userPrefs.getInt(user + "q_" + i,0);
-                Product newp = new Product(tn,tp);
-                newp.setToBuy(tq);
-                produtosASeremExbidos.add(newp);
+                if(tn.equals("")) {
+                size = size + 1;
+                }
+                else {
+                    Product newp = new Product(tn, tp);
+                    newp.setToBuy(tq);
+                    produtosASeremExbidos.add(newp);
+                }
             }
 
             float total = 0;
@@ -210,49 +216,7 @@ public class CarrinhoDeComprasActivity extends Lifecycle
         }
     };
 
-    private final View.OnLongClickListener itemLongClickListener = new View.OnLongClickListener()
-    {
-        @Override
-        public boolean onLongClick(View view)
-        {
-            final String nomeProduto = ((TextView) view).getText().toString();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(CarrinhoDeComprasActivity.this);
-
-            builder.setTitle("O que deseja fazer com o item \"" + nomeProduto + "\"?");
-
-            builder.setItems(R.array.opcoes_list, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    switch ( i )
-                    {
-                        case 0: //Editar
-                        {
-                            for ( Product p: produtosASeremExbidos )
-                            {
-                                if ( p.getName().equals(nomeProduto) )
-                                {
-                                    nomeProdutoCarrinhoEditText.setText(nomeProduto);
-                                    quantidadeProdutoEditText.setText(p.getToBuy());
-                                    precoProdutoCarrinhoEditText.setText(String.valueOf(p.getPrice()));
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                        case 1: //Excluir
-                            excluiProdutoLista(nomeProduto);
-
-                    }
-                }
-            });
-
-            builder.setNegativeButton(getString(R.string.cancel_carrinho), null);
-
-            builder.create().show();
-            return true;
-        }
-    };
 
     private void excluiProdutoLista(final String nomeProduto)
     {

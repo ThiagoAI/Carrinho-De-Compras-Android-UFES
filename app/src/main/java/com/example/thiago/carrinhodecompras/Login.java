@@ -64,7 +64,7 @@ public class Login extends Lifecycle {
         EditText editSenha = (EditText) findViewById(R.id.editSenha);
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
-        String baseUrl = "http://localhost:9000/";
+        String baseUrl = "http://10.0.2.2:9000/";
         String usuarioUrl = baseUrl + "usuario/";
         usuarioUrl = usuarioUrl + login;
         URL url = null;
@@ -154,6 +154,7 @@ public class Login extends Lifecycle {
         {
             HttpURLConnection connection = null;
             String urlBase = usuarioUrl + login;
+            Toast.makeText(getApplicationContext(), urlBase, Toast.LENGTH_LONG ).show();
             URL url = null;
             try {
                 try {
@@ -242,19 +243,27 @@ public class Login extends Lifecycle {
                     }
                     catch ( IOException e )
                     {
-                        Toast.makeText(getApplicationContext(),"Erro de leitura dos dados do WebService", Toast.LENGTH_LONG).show();
+                        System.out.println("ERRO NA LEITURA DO WEB SERVICE!");
+                        //Toast.makeText(getApplicationContext(),"Erro de leitura dos dados do WebService", Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
-                    return new JSONObject(builder.toString() );
+                    //Toast.makeText(getApplicationContext(), "Testtttt", Toast.LENGTH_LONG ).show();
+                    JSONObject objeto = new JSONObject(builder.toString() );
+                    if(objeto == null) System.out.println("CUZ I DID NOTHING WRONG MAMA ????????????????????????????????");
+                    else System.out.println("CUZ I DID RIGHT MAMA EEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+
+                    return objeto;
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService. Bad Conection", Toast.LENGTH_LONG ).show();
+                    System.out.println("ERRO BAD CONNECTION!");
+                    //Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService. Bad Conection", Toast.LENGTH_LONG ).show();
                 }
             }
             catch ( Exception e )
             {
-                Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService", Toast.LENGTH_LONG ).show();
+                System.out.println("ERRO NAO FOI POSSIVEL CONECTAR AO WEB SERVICE!");
+                //Toast.makeText(getApplicationContext(), "Erro:%nNão foi possível conctar ao WebService", Toast.LENGTH_LONG ).show();
                 e.printStackTrace();
             }
             finally
@@ -268,8 +277,12 @@ public class Login extends Lifecycle {
         @Override
         protected void onPostExecute(JSONObject usuario )
         {
+
+
+
             try
             {
+                System.out.println( usuario.getString( "nome" ) + " ! " +  usuario.getString( "senha" ));
                 if ( usuario.getString( "nome" ).equals( loginUsuario ) )
                 {
                     if ( usuario.getString("senha").equals(senhaUsuario) )
