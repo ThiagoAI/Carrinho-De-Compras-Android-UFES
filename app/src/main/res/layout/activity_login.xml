@@ -30,7 +30,7 @@
         android:id="@+id/editLogin"
         android:nestedScrollingEnabled="true"
         android:minWidth="256dp"
-        android:hint="Seu email"
+        android:hint="Seu login"
         android:textSize="24dp"
         android:padding="10dp"
         android:layout_below="@+id/textLogin"

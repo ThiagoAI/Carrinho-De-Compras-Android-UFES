@@ -1,5 +1,6 @@
 package com.example.thiago.carrinhodecompras;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -41,11 +42,10 @@ public class Login extends Lifecycle {
 
         ch_remember = (CheckBox) findViewById(R.id.checkLembrar);
         ch_remember.setChecked(remember);
-
         if(remember && user.exits()){
             EditText editLogin = (EditText) findViewById(R.id.editLogin);
             EditText editSenha = (EditText) findViewById(R.id.editSenha);
-            editLogin.setText(user.getEmail());
+            editLogin.setText(user.getName());
             editSenha.setText(user.getPassword());
         }
     }
@@ -59,11 +59,18 @@ public class Login extends Lifecycle {
     //Função que verifica login e se correto entra na tela principal
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void logar(View view){
+
         Intent intent = new Intent(this,TelaPrincipal.class);
         EditText editLogin = (EditText) findViewById(R.id.editLogin);
         EditText editSenha = (EditText) findViewById(R.id.editSenha);
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
+
+        if(login == null || senha == null||login.isEmpty() || senha.isEmpty()||login == "" || senha == "" || login == " " || senha == "" ){
+            Toast.makeText(getApplicationContext(),"Digite sua senha e/ou login.",Toast.LENGTH_LONG).show();
+            return;
+        }
+
         String baseUrl = "http://10.0.2.2:9000/";
         String usuarioUrl = baseUrl + "usuario/";
         usuarioUrl = usuarioUrl + login;
@@ -75,22 +82,13 @@ public class Login extends Lifecycle {
         catch ( Exception e )
         {
             Toast.makeText(getApplicationContext(), "Erro de conversão de URL", Toast.LENGTH_LONG ).show();
+            return;
         }
 
-        AcessoWebService acessoWebService = new AcessoWebService( login, senha );
+        AcessoWebService acessoWebService = new AcessoWebService( login, senha,this );
         acessoWebService.execute( url );
         //acessoWebService.execute( url );
         //String resposta = acessoWebService.logarPrototipo( login, senha );
-
-        if(!user.exits()){
-            Toast.makeText(getApplicationContext(),"Não há usuário registrado.", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if(login == "" || senha == ""){
-            Toast.makeText(getApplicationContext(),"Digite sua senha e/ou login.",Toast.LENGTH_LONG).show();
-            return;
-        }
 
         setRemember();
 
@@ -99,11 +97,7 @@ public class Login extends Lifecycle {
         }*/
         /*if ( resposta.equals("sucesso") )
             startActivity(intent);*/
-        if ( acessoWebService.isSucesso() )
-            startActivity(intent);
-        else{
-            Toast.makeText(getApplicationContext(),"Login ou senha inválido.",Toast.LENGTH_LONG).show();
-        }
+
     }
 
     //Vai para a tela de registro
@@ -119,9 +113,11 @@ public class Login extends Lifecycle {
         private String loginUsuario;
         private String senhaUsuario;
         private boolean sucesso;
+        private Activity act;
 
-        public AcessoWebService( String login, String senha )
+        public AcessoWebService( String login, String senha,Activity act )
         {
+            this.act = act;
             loginUsuario = login;
             senhaUsuario = senha;
             setSucesso(false);
@@ -249,6 +245,7 @@ public class Login extends Lifecycle {
                     }
                     //Toast.makeText(getApplicationContext(), "Testtttt", Toast.LENGTH_LONG ).show();
                     JSONObject objeto = new JSONObject(builder.toString() );
+                    System.out.println(builder.toString() + "!!! ! !       !");
                     if(objeto == null) System.out.println("CUZ I DID NOTHING WRONG MAMA ????????????????????????????????");
                     else System.out.println("CUZ I DID RIGHT MAMA EEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
@@ -283,10 +280,14 @@ public class Login extends Lifecycle {
             try
             {
                 System.out.println( usuario.getString( "nome" ) + " ! " +  usuario.getString( "senha" ));
+                System.out.println(loginUsuario + " | " + senhaUsuario);
                 if ( usuario.getString( "nome" ).equals( loginUsuario ) )
                 {
-                    if ( usuario.getString("senha").equals(senhaUsuario) )
+                    System.out.println("eeee");
+                    if ( usuario.getString("senha").equals(senhaUsuario) ) {
+                        System.out.println("eeeeii");
                         setSucesso(true);
+                    }
                     else
                         setSucesso(false);
                 }
@@ -298,6 +299,26 @@ public class Login extends Lifecycle {
                 Toast.makeText(getApplicationContext(), "Erro de processamento do JSON", Toast.LENGTH_LONG ).show();
                 e.printStackTrace();
 
+            }
+
+            Intent intent = new Intent(act,TelaPrincipal.class);
+            Lifecycle l = (Lifecycle) act;
+            SharedPreferences.Editor ed = l.userPrefs.edit();
+
+            if ( isSucesso() ) {
+                try {
+                    ed.remove("name");
+                    ed.remove("email");
+                    ed.remove("password");
+                    ed.putString("name", usuario.getString("nome"));
+                    ed.putString("email", usuario.getString("email"));
+                    ed.putString("password", usuario.getString("senha"));
+                    ed.commit();
+                } catch (Exception e) {e.printStackTrace();};
+                startActivity(intent);
+            }
+            else{
+                //Toast.makeText(getApplicationContext(),"Login ou senha inválido.",Toast.LENGTH_LONG).show();
             }
             /*JSONObject jsonObject = new JSONObject(builder.toString());
             if ( jsonObject.getString("nome").equals(login) )
