@@ -64,7 +64,22 @@ public class Login extends Lifecycle {
         EditText editSenha = (EditText) findViewById(R.id.editSenha);
         String login = editLogin.getText().toString();
         String senha = editSenha.getText().toString();
+        String baseUrl = "http://localhost:9000/";
+        String usuarioUrl = baseUrl + "usuario/";
+        usuarioUrl = usuarioUrl + login;
+        URL url = null;
+        try
+        {
+            url = new URL(usuarioUrl);
+        }
+        catch ( Exception e )
+        {
+            Toast.makeText(getApplicationContext(), "Erro de conversão de URL", Toast.LENGTH_LONG ).show();
+        }
+
         AcessoWebService acessoWebService = new AcessoWebService( login, senha );
+        acessoWebService.execute( url );
+        //acessoWebService.execute( url );
         //String resposta = acessoWebService.logarPrototipo( login, senha );
 
         if(!user.exits()){
